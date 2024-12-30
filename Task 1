@@ -1,0 +1,188 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class StudentGradeTracker 
+{
+public static void main(String[] args)
+{
+        // Main program loop
+        while (true) 
+{
+            displayMenu();
+            int choice = getChoice();
+            handleChoice(choice);
+    }
+    }
+
+    private static Scanner scanner = new Scanner(System.in);
+    private static StudentController controller = new StudentController();
+
+    private static void displayMenu()
+{
+        System.out.println("\nStudent Grade Tracker");
+        System.out.println("1. Add Student");
+        System.out.println("2. View All Students");
+        System.out.println("3. Search Student");
+        System.out.println("4. Exit");
+        System.out.print("Choose an option: ");
+    }
+
+    private static int getChoice()
+{
+        return scanner.nextInt();  // Get user choice from the menu
+    }
+
+    private static void handleChoice(int choice) 
+{
+        switch (choice)
+{
+            case 1:
+                addStudent();
+                break;
+            case 2:
+                viewAllStudents();
+                break;
+            case 3:
+                searchStudent();
+                break;
+            case 4:
+                System.out.println("Exiting...");
+                System.exit(0);
+                break;
+            default:
+                System.out.println("Invalid choice. Try again.");
+        }
+    }
+
+    private static void addStudent() 
+{
+        scanner.nextLine();  // Consume the newline character left by nextInt()
+        System.out.print("Enter Student ID: ");
+        String id = scanner.nextLine();
+        System.out.print("Enter Student Name: ");
+        String name = scanner.nextLine();
+        System.out.print("Enter number of grades: ");
+        int numGrades = scanner.nextInt();
+        double[] grades = new double[numGrades];
+
+        for (int i = 0; i < numGrades; i++)
+{
+            System.out.print("Enter grade " + (i + 1) + ": ");
+            grades[i] = scanner.nextDouble();
+        }
+
+        // Create a new Student object and add it to the controller
+        Student student = new Student(id, name, grades);
+        controller.addStudent(student);
+        System.out.println("Student added successfully!");
+    }
+
+    private static void viewAllStudents()
+{
+        // Print all students
+        for (Student student : controller.getAllStudents())
+{
+            System.out.println(student.getId() + " - " + student.getName() + " | Average: " + student.getAverage() + " | Grade: " + student.getGradeLetter());
+        }
+    }
+
+    private static void searchStudent()
+{
+        scanner.nextLine();  // Consume the newline character
+        System.out.print("Enter Student ID: ");
+        String id = scanner.nextLine();
+        Student student = controller.searchStudentById(id);
+        
+        if (student != null) 
+{
+            System.out.println(student.getId() + " - " + student.getName() + " | Average: " + student.getAverage() + " | Grade: " + student.getGradeLetter());
+        } 
+else 
+{
+            System.out.println("Student not found.");
+        }
+    }
+}
+
+class Student
+{
+    private String id;
+    private String name;
+    private double[] grades;
+
+    // Constructor
+    public Student(String id, String name, double[] grades)
+{
+        this.id = id;
+        this.name = name;
+        this.grades = grades;
+    }
+
+    // Getters for id and name
+    public String getId() 
+{
+        return id;
+    }
+
+    public String getName() 
+{
+        return name;
+    }
+
+    // Method to calculate average grade
+    public double getAverage() 
+{
+        double sum = 0;
+        for (double grade : grades)
+{
+            sum += grade;
+        }
+        return sum / grades.length;
+    }
+
+    // Method to calculate letter grade based on average
+    public String getGradeLetter()
+{
+        double avg = getAverage();
+        if (avg >= 90) return "A";
+        if (avg >= 80) return "B";
+        if (avg >= 70) return "C";
+        if (avg >= 60) return "D";
+        return "F";
+    }
+}
+
+class StudentController
+{
+    private ArrayList<Student> students;
+
+    public StudentController()
+{
+        students = new ArrayList<>();
+    }
+
+    // Add student to the list
+    public void addStudent(Student student)
+{
+        students.add(student);
+    }
+
+    // Search for a student by ID
+    public Student searchStudentById(String id) 
+{
+        for (Student student : students)
+{
+            if (student.getId().equalsIgnoreCase(id))
+{
+                return student;
+            }
+        }
+        return null;
+    }
+
+    // Get all students
+    public ArrayList<Student> getAllStudents()
+{
+        return students;
+    }
+}
