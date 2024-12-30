@@ -1,5 +1,8 @@
 # CODTECH-Task-1
 **Name**:MENDA NAGAMANI
+
+
+
 **company**:CODTECH IT SOLUTIONS
 **ID**:CT08EKW
 **DOMAIN**:Java Programming
@@ -7,4 +10,20 @@
 
 
 
-**OVERVIEW OF THE PROJECT**
+**OVERVIEW OF THE PROJECT**:
+**PROJECT**:StudentGradeTracker using java programming
+**OBJECTIVE**:
+
+
+
+
+
+**KEY ACTIVITIES**
+
+
+
+***TECHNOLOGIES USED***
+
+
+KEY INSIGHTS:
+
