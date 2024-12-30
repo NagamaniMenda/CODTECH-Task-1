@@ -14,7 +14,8 @@ CODTECH-Task-1
 **OVERVIEW OF THE PROJECT**:
 
 **PROJECT**: **StudentGradeTracker** using Java Programming
-!{image alt}(https://github.com/NagamaniMenda/CODTECH-Task-1/blob/76a5f83b3d477cf20b64d7bf2cc7963690e38462/studentGradetracker.png)
+
+![image alt](https://github.com/NagamaniMenda/CODTECH-Task-1/blob/76a5f83b3d477cf20b64d7bf2cc7963690e38462/studentGradetracker.png)
 
 **OBJECTIVE**:
 
